@@ -21,7 +21,7 @@ class UserRepoTest {
     UserRepo userRepo;
 
     @Test
-    public  void  saveCustomer(){
+    public  void  saveUser(){
         User user = new User("U0069", "Dasun", "Galle12345", "Driver");
         userRepo.save(user);
         System.out.println(user);

@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,5 +32,8 @@ public class Booking {
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "payID",referencedColumnName = "payID",nullable = false)
     private Payment payment;
+
+    @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
+    private List<BookingDetails> bookingDetails;
 
 }
