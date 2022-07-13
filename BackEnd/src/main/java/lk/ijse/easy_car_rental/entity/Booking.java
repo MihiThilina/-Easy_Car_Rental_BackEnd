@@ -17,8 +17,8 @@ import java.util.List;
 public class Booking {
     @Id
     private String booking_ID;
-    private LocalDate pickup_date;
-    private LocalDate Drop_date;
+    private String pickup_date;
+    //private String drop_date;
     private String location;
     private String status;
     private String driver_status;
@@ -29,11 +29,19 @@ public class Booking {
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "nicNumber",referencedColumnName = "nicNumber",nullable = false)
     private Customer customer;
-    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "payID",referencedColumnName = "payID",nullable = false)
-    private Payment payment;
+
+//    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+//    @JoinColumn(name = "payID",referencedColumnName = "payID",nullable = false)
+//    private Payment payment;
+
+
 
     @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
     private List<BookingDetails> bookingDetails;
+
+    @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
+    private List<DriverSchedule> driverSchedules;
+
+
 
 }

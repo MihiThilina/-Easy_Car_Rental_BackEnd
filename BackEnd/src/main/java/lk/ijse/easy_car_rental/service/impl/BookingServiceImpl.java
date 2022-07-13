@@ -1,12 +1,15 @@
 package lk.ijse.easy_car_rental.service.impl;
 
 import lk.ijse.easy_car_rental.dto.BookingDTO;
-import lk.ijse.easy_car_rental.dto.UserDTO;
 import lk.ijse.easy_car_rental.entity.Booking;
-import lk.ijse.easy_car_rental.entity.Customer;
+import lk.ijse.easy_car_rental.entity.Driver;
+import lk.ijse.easy_car_rental.entity.DriverSchedule;
 import lk.ijse.easy_car_rental.repo.BookingRepo;
+import lk.ijse.easy_car_rental.repo.DriverRepo;
+import lk.ijse.easy_car_rental.repo.DriverScheduleRepo;
 import lk.ijse.easy_car_rental.service.BookingService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,16 +24,24 @@ public class BookingServiceImpl implements BookingService {
     BookingRepo bookingRepo;
 
     @Autowired
+    DriverScheduleRepo driverScheduleRepo;
+
+    @Autowired
     ModelMapper modelMapper;
 
 
     @Override
     public void saveBooking(BookingDTO booking) {
-        if(!bookingRepo.existsById(booking.getBooking_ID())){
-            bookingRepo.save(modelMapper.map(booking, Booking.class));
-        }else {
-            throw new RuntimeException("Booking eka karannna ba..!");
-        }
+      Booking bookings = modelMapper.map(booking,Booking.class);
+      if(!bookingRepo.existsById(booking.getBooking_ID())){
+          Booking save = bookingRepo.save(bookings);
+          if(booking.getBookingDetails().size()<1)throw new RuntimeException("No cars added for the booking..!");
+          if(save!=null){
+
+          }
+      }else {
+          throw new RuntimeException("Booking Failed..!" + booking.getBooking_ID() + " Already Exist.!");
+      }
     }
 
     @Override
@@ -50,6 +61,6 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<BookingDTO> getAllBooking() {
-        return null;
+        return modelMapper.map(bookingRepo.findAll(), new TypeToken<List<BookingDTO>>() {}.getType());
     }
 }

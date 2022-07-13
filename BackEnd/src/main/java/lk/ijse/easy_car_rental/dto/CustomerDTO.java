@@ -12,8 +12,7 @@ import lombok.ToString;
 @ToString
 public class CustomerDTO {
     private String nicNumber;
-    private UserDTO user;
-    private String  password;
+    private String password;
     private String name;
     private String address;
     private String contact;

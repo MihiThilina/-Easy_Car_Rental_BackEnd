@@ -7,6 +7,7 @@ import lk.ijse.easy_car_rental.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     ModelMapper mapper;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
 
 
     @Override

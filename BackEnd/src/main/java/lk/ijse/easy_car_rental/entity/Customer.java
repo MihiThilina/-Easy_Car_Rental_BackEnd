@@ -22,8 +22,5 @@ public class Customer {
     private String contact;
     private String email;
     private String license_number;
-    @OneToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
-    @JoinColumn(name = "userID",referencedColumnName = "userID",nullable = false)
-    private User user;
 
 }

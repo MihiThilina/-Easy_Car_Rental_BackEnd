@@ -17,4 +17,5 @@ public class BookingCar_PK implements Serializable {
 
     private String booking_ID;
     private String registration_Number;
+
 }
