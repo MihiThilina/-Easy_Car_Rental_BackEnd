@@ -1,10 +1,8 @@
 package lk.ijse.easy_car_rental.controller;
 
-
 import lk.ijse.easy_car_rental.dto.CustomerDTO;
 import lk.ijse.easy_car_rental.service.CustomerService;
 import lk.ijse.easy_car_rental.util.ResponseUtil;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,7 +34,7 @@ public class CustomerController {
         return new ResponseUtil(200,"Updated",null);
     }
 
-    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(params = {"nicNumber"},produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseUtil deleteCustomer(@RequestParam String id) {
         customers.deleteCustomer(id);
         return new ResponseUtil(200,"Deleted",null);

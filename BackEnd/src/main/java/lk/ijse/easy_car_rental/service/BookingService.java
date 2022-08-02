@@ -8,6 +8,7 @@ import java.util.List;
 public interface BookingService {
 
     void saveBooking(BookingDTO booking);
+    String getBookigLastID();
     void deleteBooking(String id);
     void updateBooking(BookingDTO booking);
     BookingDTO  searchBooking(String id);

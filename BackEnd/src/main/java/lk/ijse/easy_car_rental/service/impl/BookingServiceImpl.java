@@ -2,10 +2,7 @@ package lk.ijse.easy_car_rental.service.impl;
 
 import lk.ijse.easy_car_rental.dto.BookingDTO;
 import lk.ijse.easy_car_rental.entity.Booking;
-import lk.ijse.easy_car_rental.entity.Driver;
-import lk.ijse.easy_car_rental.entity.DriverSchedule;
 import lk.ijse.easy_car_rental.repo.BookingRepo;
-import lk.ijse.easy_car_rental.repo.DriverRepo;
 import lk.ijse.easy_car_rental.repo.DriverScheduleRepo;
 import lk.ijse.easy_car_rental.service.BookingService;
 import org.modelmapper.ModelMapper;
@@ -42,6 +39,11 @@ public class BookingServiceImpl implements BookingService {
       }else {
           throw new RuntimeException("Booking Failed..!" + booking.getBooking_ID() + " Already Exist.!");
       }
+    }
+
+    @Override
+    public String getBookigLastID() {
+        return bookingRepo.getBookingsByID();
     }
 
     @Override

@@ -18,7 +18,6 @@ class PaymentRepoTest {
 
     @Autowired
     PaymentRepo paymentRepo;
-
     @Test
     public  void  savePayment(){
         Payment payment = new Payment(

@@ -20,4 +20,5 @@ public class Driver {
     private String address;
     private String contact;
     private String salary;
+    private String driLicence_ImgNIC;
 }

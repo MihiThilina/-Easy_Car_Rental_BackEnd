@@ -15,4 +15,9 @@ public class DriverDTO {
     private String address;
     private String contact;
     private String salary;
+    private String driLicence_ImgNIC ;
+
+
+
+
 }

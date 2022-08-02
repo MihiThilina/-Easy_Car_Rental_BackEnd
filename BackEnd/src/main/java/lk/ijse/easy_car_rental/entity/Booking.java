@@ -17,14 +17,13 @@ import java.util.List;
 public class Booking {
     @Id
     private String booking_ID;
-    private String pickup_date;
-    //private String drop_date;
-    private String location;
-    private String status;
+    private String drop_time;
     private String driver_status;
-    private double price;
     private String cars;
     private double loss_damage;
+    private String pickup_date;
+    private String pickup_time;
+    private String drop_date;
     private String total_Days;
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "nicNumber",referencedColumnName = "nicNumber",nullable = false)

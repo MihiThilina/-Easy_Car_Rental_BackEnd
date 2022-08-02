@@ -25,4 +25,10 @@ public class BookingController {
         return new ResponseUtil(200, "Save", null);
     }
 
+    @GetMapping(path = "bookingID")
+    public ResponseUtil getIDS(){
+        String bookigLastID = bookingService.getBookigLastID();
+        return new ResponseUtil(200, "ok", bookigLastID);
+    }
+
 }

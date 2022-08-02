@@ -27,6 +27,9 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public  ResponseUtil saveCars(@RequestBody CarsDTO carsDTO) {
+        System.out.println("=========================");
+        System.out.println(carsDTO.toString());
+        System.out.println("=========================");
         carsService.saveCars(carsDTO);
         return new ResponseUtil(200,"Save",null);
     }

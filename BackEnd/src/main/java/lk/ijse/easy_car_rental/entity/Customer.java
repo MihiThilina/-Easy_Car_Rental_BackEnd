@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 
@@ -16,6 +17,10 @@ import javax.persistence.*;
 public class Customer {
     @Id
     private String nicNumber;
+//    @ColumnTransformer(
+//            read = "PGP_SYM_DECRYPT(email, 'secret-key-12345')",
+//            write = "PGP_SYM_ENCRYPT (?, 'secret-key-12345')"
+//    )
     private String  password;
     private String name;
     private String address;
