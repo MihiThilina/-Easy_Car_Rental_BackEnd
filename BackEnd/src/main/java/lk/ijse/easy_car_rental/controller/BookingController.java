@@ -17,6 +17,12 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
+    @GetMapping
+    public ResponseUtil getAllCars() {
+        return new ResponseUtil(
+                200,"Ok",bookingService.getAllBooking());
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveBooking(@RequestBody BookingDTO bookingDTO){

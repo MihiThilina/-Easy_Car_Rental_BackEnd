@@ -27,4 +27,5 @@ public class BookingDTO {
 //  private Payment payment;
     private List<BookingDetailsDTO> bookingDetails;
     private List<DriverScheduleDTO> driverSchedules;
+
 }

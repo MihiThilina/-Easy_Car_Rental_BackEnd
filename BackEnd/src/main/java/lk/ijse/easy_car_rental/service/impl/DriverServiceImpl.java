@@ -1,6 +1,7 @@
 package lk.ijse.easy_car_rental.service.impl;
 
 import lk.ijse.easy_car_rental.dto.DriverDTO;
+import lk.ijse.easy_car_rental.dto.UserDTO;
 import lk.ijse.easy_car_rental.entity.Driver;
 import lk.ijse.easy_car_rental.repo.DriverRepo;
 import lk.ijse.easy_car_rental.service.DriverService;
@@ -21,6 +22,18 @@ public class DriverServiceImpl implements DriverService {
     DriverRepo driverRepo;
     @Autowired
     ModelMapper modelMapper;
+
+
+    @Override
+    public DriverDTO getUserForLogin(UserDTO userDTO) {
+        List<Driver> all = driverRepo.findAll();
+        for (Driver driver: all) {
+           if (driver.getName().equals(userDTO.getUserName()) & driver.getLicence_ID().equals(userDTO.getPassword())){
+               return  new DriverDTO(driver.getLicence_ID(),driver.getName(),driver.getAddress(),driver.getContact(),driver.getSalary(),driver.getDriLicence_ImgNIC());
+           }
+        }
+        return  null;
+    }
 
     @Override
     public void saveDriver(DriverDTO driver) {
@@ -61,5 +74,12 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public List<DriverDTO> getAllDriver() {
         return modelMapper.map(driverRepo.findAll(), new TypeToken<List<DriverDTO>>() {}.getType());
+    }
+
+    @Override
+    public DriverDTO getRandomDriver() {
+        Driver driverRandomly = driverRepo.findDriverRandomly();
+        DriverDTO driverDTO =modelMapper.map(driverRandomly, DriverDTO.class);
+        return driverDTO;
     }
 }

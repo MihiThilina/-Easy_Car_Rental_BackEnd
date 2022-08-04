@@ -2,6 +2,7 @@ package lk.ijse.easy_car_rental.controller;
 
 
 
+import lk.ijse.easy_car_rental.dto.CarsDTO;
 import lk.ijse.easy_car_rental.dto.DriverDTO;
 import lk.ijse.easy_car_rental.service.DriverService;
 import lk.ijse.easy_car_rental.util.ResponseUtil;
@@ -29,7 +30,8 @@ public class DriverController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseUtil postDriver(@RequestPart("Driverfiles") MultipartFile[] file, @RequestPart("driver") DriverDTO driverDTO) {
+    public ResponseUtil postDriver(@RequestPart("file") MultipartFile[] file){
+
         for (MultipartFile myFile : file) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
@@ -41,20 +43,31 @@ public class DriverController {
                 e.printStackTrace();
                 return new ResponseUtil(500, "Registration Failed.Try Again Latter", null);
             }
-
-
         }
 
-        driverDTO.setDriLicence_ImgNIC("uploads/" + driverDTO.getDriLicence_ImgNIC());
-        driverService.saveDriver(driverDTO);
-        System.out.println("===============================================");
-        System.out.println(driverDTO.getDriLicence_ImgNIC());
-        System.out.println("===============================================");
-        System.out.println("===============================================");
-        System.out.println(driverDTO.toString());
-        System.out.println("===============================================");
+//         driverDTO.setDriLicence_ImgNIC("uploads/" + driverDTO.getDriLicence_ImgNIC());
+//        driverService.saveDriver(driverDTO);
+//        System.out.println("===============================================");
+//        System.out.println(driverDTO.getDriLicence_ImgNIC());
+//        System.out.println("===============================================");
+//        System.out.println("===============================================");
+//        System.out.println(driverDTO.toString());
+//        System.out.println("===============================================");
+//        driverService.saveDriver(driverDTO);
         return new ResponseUtil(200,"Driver Details Updated",null);
     }
+
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseUtil saveCars(@RequestBody DriverDTO driverDTO) {
+        System.out.println("=========================");
+        System.out.println("=========================");
+        driverService.saveDriver(driverDTO);
+        return new ResponseUtil(200,"Save",null);
+    }
+
+
 
 
 

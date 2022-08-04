@@ -1,6 +1,7 @@
 package lk.ijse.easy_car_rental.service.impl;
 
 import lk.ijse.easy_car_rental.dto.CustomerDTO;
+import lk.ijse.easy_car_rental.dto.UserDTO;
 import lk.ijse.easy_car_rental.entity.Customer;
 import lk.ijse.easy_car_rental.repo.CustomerRepo;
 import lk.ijse.easy_car_rental.service.CustomerService;
@@ -27,6 +28,20 @@ public class CustomerServiceImpl implements CustomerService {
     PasswordEncoder passwordEncoder;
 
 
+    @Override
+    public CustomerDTO getUserForLogin(UserDTO userDTO) {
+        List<Customer> all = customerRepo.findAll();
+
+        for (Customer customer: all) {
+
+            if(customer.getEmail().equals(userDTO.getUserName()) & customer.getPassword().equals(userDTO.getPassword())){
+
+                return new CustomerDTO(customer.getNicNumber(),customer.getPassword(),customer.getName(),customer.getAddress(),customer.getContact(),
+                        customer.getEmail(),customer.getLicense_number());
+            }
+        }
+        return null;
+    }
 
     @Override
     public void saveCustomer(CustomerDTO customer) {

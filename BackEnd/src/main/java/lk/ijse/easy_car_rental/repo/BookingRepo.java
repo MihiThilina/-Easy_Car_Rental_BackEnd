@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BookingRepo extends JpaRepository<Booking,String> {
 
-     @Query(value="select booking_ID from booking order by booking_ID DESC limit 1",nativeQuery=true)
+     @Query(value="select booking_Id from booking order by booking_Id DESC limit 1",nativeQuery=true)
      String getBookingsByID();
 
 

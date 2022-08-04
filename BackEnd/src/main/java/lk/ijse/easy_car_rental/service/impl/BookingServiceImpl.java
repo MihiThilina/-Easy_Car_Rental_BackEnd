@@ -31,6 +31,7 @@ public class BookingServiceImpl implements BookingService {
     public void saveBooking(BookingDTO booking) {
       Booking bookings = modelMapper.map(booking,Booking.class);
       if(!bookingRepo.existsById(booking.getBooking_ID())){
+
           Booking save = bookingRepo.save(bookings);
           if(booking.getBookingDetails().size()<1)throw new RuntimeException("No cars added for the booking..!");
           if(save!=null){
